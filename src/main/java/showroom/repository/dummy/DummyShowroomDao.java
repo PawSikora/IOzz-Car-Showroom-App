@@ -1,4 +1,4 @@
-package showroom.repository.mem;
+package showroom.repository.dummy;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
@@ -7,24 +7,22 @@ import showroom.model.Showroom;
 import showroom.repository.ShowroomDao;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-@Component("showroomDao")
+@Component
 //@Primary
-public class MemShowroomDao implements ShowroomDao {
-
+public class DummyShowroomDao implements ShowroomDao {
     @Override
     public List<Showroom> findAll() {
-        return SampleData.showrooms;
+        return List.of();
     }
 
     @Override
     public Showroom findById(int id) {
-        return SampleData.showrooms.stream().filter(s -> s.getId() == id).findFirst().orElse(null);
+        return null;
     }
 
     @Override
     public List<Showroom> findByCar(Car car) {
-        return SampleData.showrooms.stream().filter(s -> s.getCars().contains(car)).collect(Collectors.toList());
+        return List.of();
     }
 }

@@ -1,5 +1,7 @@
 package showroom.service;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import showroom.model.Showroom;
 import showroom.repository.CarDao;
 import showroom.repository.ShowroomDao;
@@ -11,15 +13,22 @@ import java.util.List;
 
 public class ShowroomServiceMain {
     public static void main(String[] args) {
-        System.out.println("Let's find showrooms!");
-
+       /*
         ShowroomDao showroomDao = new MemShowroomDao();
         CarDao carDao = new MemCarDao();
+        */
 
-        ShowroomService service = new ShowroomServiceBean(showroomDao, carDao);
+        System.out.println("Let's find showrooms!");
+
+        ApplicationContext context = new AnnotationConfigApplicationContext("showroom");
+        ShowroomService service = context.getBean(ShowroomServiceBean.class);
+        ShowroomService service2 = context.getBean(ShowroomService.class);
 
         List<Showroom> showrooms = service.getAllShowrooms();
         System.out.println(showrooms.size() + " showrooms found:");
         showrooms.forEach(System.out::println);
+
+        String foo = context.getBean(String.class);
+        System.out.println("foo string: " + foo);
     }
 }

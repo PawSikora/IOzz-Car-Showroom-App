@@ -1,5 +1,7 @@
 package showroom.service.impl;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 import showroom.model.Car;
 import showroom.model.Showroom;
 import showroom.repository.CarDao;
@@ -9,6 +11,8 @@ import showroom.service.ShowroomService;
 import java.util.List;
 import java.util.logging.Logger;
 
+@Component
+@Scope("prototype")
 public class ShowroomServiceBean implements ShowroomService {
 
     private static final Logger log = Logger.getLogger(ShowroomService.class.getName());
