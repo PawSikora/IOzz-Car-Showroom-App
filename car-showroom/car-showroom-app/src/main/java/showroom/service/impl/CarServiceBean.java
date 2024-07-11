@@ -92,6 +92,7 @@ public class CarServiceBean implements CarService {
         return showroomDao.findById(id);
     }
 
+    @Override
     public List<Car> getCarsInShowroom(Showroom showroom) {
         log.info("searching cars in showroom " + showroom.getId());
         return carDao.findByShowroom(showroom);

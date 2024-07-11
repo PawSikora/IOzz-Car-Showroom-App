@@ -1,5 +1,7 @@
 package showroom.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +9,7 @@ public class Manufacturer {
     private int id;
     private String name;
     private String country;
+    @JsonIgnore
     private List<Car> cars = new ArrayList<>();
 
     public Manufacturer() {}

@@ -1,5 +1,6 @@
 package showroom.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ public class ShowroomServiceBean implements ShowroomService {
     private ShowroomDao showroomDao;
     private CarDao carDao;
 
+    @Autowired
     public ShowroomServiceBean(ShowroomDao showroomDao, CarDao carDao) {
         log.info("creating showroom service bean");
         this.showroomDao = showroomDao;

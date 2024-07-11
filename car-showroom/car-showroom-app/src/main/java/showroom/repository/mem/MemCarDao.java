@@ -37,6 +37,6 @@ public class MemCarDao implements CarDao {
 
     @Override
     public List<Car> findByShowroom(Showroom showroom) {
-        return SampleData.cars.stream().filter(c -> c.getShowrooms().equals(showroom)).collect(Collectors.toList());
+        return SampleData.cars.stream().filter(c -> c.getShowrooms().contains(showroom)).collect(Collectors.toList());
     }
 }
