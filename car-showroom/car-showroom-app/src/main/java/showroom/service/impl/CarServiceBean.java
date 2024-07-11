@@ -2,6 +2,7 @@ package showroom.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import showroom.model.Car;
 import showroom.model.Manufacturer;
 import showroom.model.Showroom;
@@ -13,7 +14,7 @@ import showroom.service.CarService;
 import java.util.List;
 import java.util.logging.Logger;
 
-@Component
+@Service
 public class CarServiceBean implements CarService {
 
     private  static final Logger log = Logger.getLogger(CarService.class.getName());

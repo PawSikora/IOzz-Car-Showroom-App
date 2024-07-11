@@ -12,4 +12,6 @@ public interface ShowroomDao {
     Showroom findById(int id);
 
     List<Showroom> findByCar(Car car);
+
+    Showroom save(Showroom showroom);
 }

@@ -2,6 +2,7 @@ package showroom.service.impl;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import showroom.model.Car;
 import showroom.model.Showroom;
 import showroom.repository.CarDao;
@@ -11,7 +12,7 @@ import showroom.service.ShowroomService;
 import java.util.List;
 import java.util.logging.Logger;
 
-@Component
+@Service
 @Scope("prototype")
 public class ShowroomServiceBean implements ShowroomService {
 
@@ -48,6 +49,12 @@ public class ShowroomServiceBean implements ShowroomService {
     public List<Car> getCarsInShowroom(Showroom showroom) {
         log.info("searching cars in showroom " + showroom.getId());
         return carDao.findByShowroom(showroom);
+    }
+
+    @Override
+    public Showroom addShowroom(Showroom showroom) {
+        log.info("adding new showroom " + showroom.getName());
+        return showroomDao.save(showroom);
     }
 }
 

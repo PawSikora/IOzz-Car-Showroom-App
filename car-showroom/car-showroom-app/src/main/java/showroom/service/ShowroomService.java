@@ -14,4 +14,6 @@ public interface ShowroomService {
     List<Showroom> getShowroomsByCar(Car car);
 
     List<Car> getCarsInShowroom(Showroom showroom);
+
+    Showroom addShowroom(Showroom showroom);
 }

@@ -1,6 +1,7 @@
 package showroom.repository.mem;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import showroom.model.Car;
 import showroom.model.Manufacturer;
 import showroom.model.Showroom;
@@ -9,7 +10,7 @@ import showroom.repository.CarDao;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
+@Repository("carDao")
 public class MemCarDao implements CarDao {
     @Override
     public List<Car> findAll() {

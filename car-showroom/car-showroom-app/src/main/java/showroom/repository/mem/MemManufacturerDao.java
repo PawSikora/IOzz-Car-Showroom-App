@@ -1,12 +1,13 @@
 package showroom.repository.mem;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import showroom.model.Manufacturer;
 import showroom.repository.ManufacturerDao;
 
 import java.util.List;
 
-@Component
+@Repository("manufacturerDao")
 public class MemManufacturerDao implements ManufacturerDao {
 
     @Override

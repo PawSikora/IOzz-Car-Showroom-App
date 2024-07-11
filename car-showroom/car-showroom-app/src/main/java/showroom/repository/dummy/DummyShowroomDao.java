@@ -25,4 +25,7 @@ public class DummyShowroomDao implements ShowroomDao {
     public List<Showroom> findByCar(Car car) {
         return List.of();
     }
+
+    @Override
+    public Showroom save(Showroom showroom) { return null; }
 }

@@ -24,6 +24,7 @@ public class ShowroomComponent implements CommandLineRunner, ApplicationListener
         List<Showroom> showrooms = showroomService.getAllShowrooms();
         log.info("{} showrooms found", showrooms.size());
         showrooms.forEach(showroom -> log.info("{}", showroom));
+
     }
 
     @Override
