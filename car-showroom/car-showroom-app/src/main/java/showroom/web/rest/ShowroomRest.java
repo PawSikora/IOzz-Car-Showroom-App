@@ -1,17 +1,25 @@
 package showroom.web.rest;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.servlet.LocaleResolver;
 import showroom.model.Car;
 import showroom.model.Showroom;
 import showroom.service.CarService;
 import showroom.service.ShowroomService;
 
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,8 +27,10 @@ import java.util.List;
 @RequestMapping("/webapi")
 public class ShowroomRest {
 
-    private  final ShowroomService showroomService;
+    private final ShowroomService showroomService;
     private final CarService carService;
+    private final MessageSource messageSource;
+    private final LocaleResolver localeResolver;
 
     @GetMapping("/showrooms")
     List<Showroom> getShowrooms(
@@ -64,8 +74,20 @@ public class ShowroomRest {
     }
 
     @PostMapping("/showrooms")
-    ResponseEntity<Showroom> addShowroom(@RequestBody Showroom showroom) {
+    ResponseEntity<?> addShowroom(@Validated @RequestBody Showroom showroom, Errors errors, HttpServletRequest request) {
         log.info("about to add new showroom: {}", showroom);
+
+        if(errors.hasErrors()) {
+            /*String errorMessage = errors.getAllErrors().stream()
+                    .map(oe->oe.toString())
+                    .reduce("errors:\n", (accu, oe)->accu + oe + "\n");*/
+            Locale locale = localeResolver.resolveLocale(request);
+            String errorMessage = errors.getAllErrors().stream()
+                    .map(oe->messageSource.getMessage(oe.getCode(), new Object[0], locale))
+                    .reduce("errors:\n", (accu, oe)->accu + oe + "\n");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
+        }
+
         showroom = showroomService.addShowroom(showroom);
         log.info("new showroom added {}", showroom);
         return ResponseEntity.status(HttpStatus.CREATED).body(showroom);

@@ -1,12 +1,16 @@
 package showroom.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Showroom {
     private int id;
+    @NotNull
+    @Size(min = 2, max = 50)
     private String name;
     private String logo;
     @JsonIgnore

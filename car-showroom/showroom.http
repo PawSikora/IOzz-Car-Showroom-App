@@ -17,8 +17,9 @@ Accept: application/json
 ### create new showroom
 POST http://localhost:8080/webapi/showrooms
 Content-Type: application/json
+Accept-Language: en
 
 {
-  "name": "Salon Mercedes",
+  "name": "",
   "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Mercedes_benz_logo1989.png"
 }
